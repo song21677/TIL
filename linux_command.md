@@ -30,3 +30,9 @@ rename [options] expression replacement file or directory...
 # test1.txt / test2.txt => TEST1.txt / TEST2.txt
 # rename test TEST *.txt
 ```
+* ***cp***: 파일이나 디렉토리를 복사하는 명령어
+```bash
+cp [option]... [-T] source dest
+cp [option]... source... directory
+cp [option]... -t directory source 
+```
