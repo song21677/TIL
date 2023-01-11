@@ -21,7 +21,7 @@ mv [option]... [-T] source dest
 # 현재 디렉토리의 test1.txt를 상위 폴더로 test2.txt로 이름 변경하여 이동
 # mv test1.txt ../test2.txt
 
-rename [options] expression replacement file or directory...
+rename [options] expression replacement file or directory
 
 # '?', '*'과 같은 문자열 패턴을 사용할 수 있음
 
@@ -30,9 +30,12 @@ rename [options] expression replacement file or directory...
 # test1.txt / test2.txt => TEST1.txt / TEST2.txt
 # rename test TEST *.txt
 ```
+<<<<<<< HEAD
 * ***cp***: 파일이나 디렉토리를 복사하는 명령어
 ```bash
 cp [option]... [-T] source dest
 cp [option]... source... directory
 cp [option]... -t directory source 
 ```
+=======
+>>>>>>> f01d43cc0d6cb7e7f0a807dc8ce5cf2470c7b90b
