@@ -17,6 +17,15 @@
             return t;
         }
     }
+
+    public class Main {
+        public static void main(String args[]) {
+            // Java SE 7부터 가능함.
+            ExClassGeneric<Integer> exGeneric = new ExClassGeneric<>();
+            // Java SE 7 이전
+            // ExClassGeneric<Integer> exGeneric = new ExClassGeneric<Integer>();
+        }
+    }
     ```
 
 <br><br>
@@ -48,3 +57,8 @@
     => type casting은 컴파일러가 자동으로 해주는 일으로, 프로그래머가 직접 하는 것은 좋지 않은 프로그래밍이다.
     <br>
     => 따라서, 같은 generic programming이더라도 Generics를 이용한 것이 더 좋은 프로그래밍이라 할 수 있다.
+
+    <br><br>
+    ## Reference
+    * [Java로 배우는 자료구조-권오흠](https://www.inflearn.com/course/java-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/dashboard)
+    * [제네릭(Generic) 사용법 & 예제 총정리](https://coding-factory.tistory.com/573)
