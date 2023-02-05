@@ -44,4 +44,4 @@
 
 ## Reference
 * [TCP SCHOOL](http://www.tcpschool.com/java/java_collectionFramework_stackQueue)
-* [Java 공식문서](https://docs.oracle.com/javase/8/docs/api/)
+* [Java 공식문서 - Stack](https://docs.oracle.com/javase/8/docs/api/)
