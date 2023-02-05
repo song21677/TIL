@@ -1,12 +1,13 @@
 ## Stack 클래스
-* List 컬렉션 클래스의 Vector 클래스를 상속받는다.
+* List 컬렉션 클래스의 Vector 클래스를 상속받는다. <br>
+  (뒤에서 데이터를 추가하고 삭제하는 스택은 배열 기반의 클래스가 적합하다.)
 * 스택 메모리 구조의 클래스를 제공한다.
 * Vector 클래스의 5개 메소드만 상속받는다.
   |메소드|설명|
   |---|---|
   |E push(E item)|해당 스택의 제일 상단에 전달된 요소를 삽입함.|
-  |E pop()|해당 스택의 제일 상단에 있는(제일 마지막으로 저장된) 요소를 반환하고, 해당 요소를 스택에서 제거함.|
-  |E peek()|해당 스택의 제일 상단에 있는(제일 마지막으로 저장된) 요소를 반환함.|
+  |E pop()|해당 스택의 제일 상단에 있는(제일 마지막으로 저장된) 요소를 반환하고, 해당 요소를 스택에서 제거함. <br> 스택이 비어 있다면, EmptyStackException이 발생함.|
+  |E peek()|해당 스택의 제일 상단에 있는(제일 마지막으로 저장된) 요소를 반환함. <br> 스택이 비어 있다면, EmptyStackException이 발생함.|
   |int search(Object o)|해당 스택에서 전달된 객체가 존재하는 위치의 인덱스를 반환함. 찾지 못하면 -1을 반환한다. <br> 이때 인덱스는 제일 상단에 있는(제일 마지막으로 저장된) 요소의 위치부터 0이 아닌 1로 시작함.|
   |boolean empty()|해당 스택이 비어 있으면 true를, 비어 있지 않으면 false를 반환함.|
 * 예제
@@ -38,3 +39,9 @@
   * 더욱 복잡하고 빠른 스택을 구현하고 싶으면 Deque 인터페이스를 구현한 ArrayDeque 클래스를 사용하면 된다. <br>
     * ``Deque<Integer> st = new ArrayDeque<Integer>();``
     * ArrayDeque 클래스는 Stack 클래스와 달리 search() 메소드는 지원하지 않는다.
+
+<br><br>
+
+## Reference
+* [TCP SCHOOL](http://www.tcpschool.com/java/java_collectionFramework_stackQueue)
+* [Java 공식문서](https://docs.oracle.com/javase/8/docs/api/)
