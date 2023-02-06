@@ -4,7 +4,7 @@
 * [[baekjoon] 1000번 A+B](https://github.com/song21677/TIL/blob/main/algorithm/baekjoon/1000.md)
 * [[baekjoon] 2558번 A+B - 2](https://github.com/song21677/TIL/blob/main/algorithm/baekjoon/2558.md)
 * [[baekjoon] 10950번 A+B - 3](https://github.com/song21677/TIL/blob/main/algorithm/baekjoon/10950.md)
-
+* [[baekjoon] 10951번 A+B - 4](https://github.com/song21677/TIL/blob/main/algorithm/baekjoon/10951.md)
 <br><br>
 
 ## 자료구조
@@ -19,3 +19,7 @@
 * [[baekjoon] 10845번 큐](https://github.com/song21677/TIL/blob/main/algorithm/baekjoon/10845.md)
 
 <br><br>
+
+### 덱
+* [Dequeue 구현 정리](https://github.com/song21677/TIL/blob/main/java/collection-framework/Queue.md)
+* [[baekjoon] 10866번 덱](https://github.com/song21677/TIL/blob/main/algorithm/baekjoon/10866.md)
