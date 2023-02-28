@@ -21,6 +21,7 @@
 public class Main {
     public static int [] parent = new int [1000001];
     public static int [] rank = new int [1000001];
+    public static int [] nodeCount = new int [1000001];
 
     public static void main(String args[]) {
         for (int i=1; i<=8; i++) {
@@ -78,6 +79,20 @@ public class Main {
         else
             // 경로 압축(Path Compression), 시간 복잡도 : O(logN)
             return parent[x] = find(parent[x]);
+    }
+
+    // x, y 두 원소가 속한 트리의 전체 노드의 수 구하기
+    public static int union2(int x, int y) {
+        x = find(x);
+        y = find(y);
+
+        // 두 값의 root가 같지 않으면
+        if (x != y) {
+            root[y] = x; // y의 root를 x로 변경
+            nodeCount[x] += nodeCount[y]; // x의 node 수에 y의 node 수를 더한다.
+            nodeCount[y] = 1; // x에 붙은 y의 node 수는 1로 초기화
+        }
+        return nodeCoune[x]; // 가장 root의 node 수 반환
     }
 }
 
