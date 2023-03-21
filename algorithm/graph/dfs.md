@@ -12,7 +12,7 @@
         v 방문;
         visited[v] <- true;
         do {
-            if (v의 인접 정줌 중 방문 안 한 w 찾기)
+            if (v의 인접 정점 중 방문 안 한 w 찾기)
                 push(v);
             while (w) {
                 w 방문;
@@ -25,3 +25,7 @@
         } while(v)
     end DFS()
     ```
+<br><br>
+
+## Reference
+* [SWEA - Stack 1](https://swexpertacademy.com/main/learn/course/subjectDetail.do?courseId=AVuPDN86AAXw5UW6&subjectId=AV184o76I7sCFAZN)
