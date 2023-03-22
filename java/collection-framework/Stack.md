@@ -85,6 +85,62 @@ end pop()
   * 자기 자신을 호출하여 순환 수행되는 것
   * 함수에서 실행해야 하는 작업의 특성에 따라 일반적인 호출방식보다 재귀 호출 방식을 사용하여 함수를 만들면 프로그램의 크기를 줄이고 간단하게 작성할 수 있음
   * 디버깅이 어렵고 잘못 작성하게 되면 수행 시간이 많이 소요됨
+* DFS
+* 계산기
+  1. Stack을 이용하여 중위표기법의 수식을 후위표기법으로 변경한다.
+      1. 중위표기법 -> 후위표기법
+         1. 수식의 각 연산자에 대해서 우선순위에 따라 괄호를 사용하여 다시 표현한다. ((A*B) - (C/D))
+         2. 각 연산자를 그에 대응하는 오른쪽 괄호의 뒤로 이동한다. ((A B) * (C D)/)-
+         3. 괄호를 제거한다. AB*CD/-
+      2. 알고리즘
+         1. 입력 받은 중위표기식에서 토큰을 읽는다.
+         2. 토큰이 피연산자이면 토큰을 출력한다.
+         3. 토큰이 연산자(괄호포함)일 경우
+            * Stack top과 비교,   
+            * 우선순위가 높으면 => Stack에 push
+            * 우선순위가 높지 않으면 => 이전 연산자의 우선순위가 토큰의 우선순위보다 작을 때까지 Stack에서 pop한 후 토큰의 연산자를 push
+            * 만약 top에 연산자가 없으면 => push
+          4. 토큰이 오른쪽 괄호 ')'일 경우
+             * Stack top에 왼쪽 괄호 '('가 올 때까지 Stack에 pop 연산을 수행
+             * pop한 연산자를 출력
+             * 왼쪽 괄호를 만나면 pop만 하고 출력하지는 않음
+          5. 중위표기식에 더 읽을 것이 없다면 중지, 더 읽을 것이 있다면 1부터 반복
+          6.  Stack에 남아 있는 연산자를 모두 pop하여 출력
+          * Stack 밖의 왼쪽 괄호는 우선 순위가 가장 높으며, Stack 안의 왼쪽 괄호는 우선 순위가 가장 낮다.
+          ![{0955A1C1-CFAB-4397-BFD6-096C72233300}](https://user-images.githubusercontent.com/55786368/226905734-9135bf1a-1e20-4694-8496-1585bd5683c8.png)
+          ![{D72C002A-7F2D-49EB-AE4B-6E6109387C52}](https://user-images.githubusercontent.com/55786368/226905761-0d75fdbd-9eba-4138-9431-08b8600a6b71.png)
+
+          ![{595BDEF9-838A-431F-90AD-2CC11217A4E9}](https://user-images.githubusercontent.com/55786368/226905785-48208448-4290-4255-84b8-23a4d5ef264f.png)
+
+          ![{DE87AA43-1712-4173-9940-61F680708A88}](https://user-images.githubusercontent.com/55786368/226905819-c86eeb85-ba94-46c4-834c-98de4469a3d1.png)
+
+          ![{0F627718-AA5C-4E23-AEB8-7DCDD40B540A}](https://user-images.githubusercontent.com/55786368/226905863-cafdff17-c52e-48e2-a07e-efce75c1391f.png)
+
+          ![{B90693D6-FCD7-4E22-9C8C-AEF3A22E500A}](https://user-images.githubusercontent.com/55786368/226905897-d60d4431-71be-43f0-a166-6bbaddef93b0.png)
+
+          ![{EE22C997-0E48-4F2A-9F55-F044D60BD146}](https://user-images.githubusercontent.com/55786368/226905979-ce7ca6ce-faf7-4f8e-a7f1-0fecdd0eefe7.png)
+
+          ![{039C7759-8554-45CA-A38F-5EDA2DDC8EA8}](https://user-images.githubusercontent.com/55786368/226906062-cc0917af-0838-4c8c-bf4f-4dee29b31f07.png)
+
+          ![{76A8C4B7-6E7B-4997-8D83-7ABEBF966AF2}](https://user-images.githubusercontent.com/55786368/226906115-cdcfc8af-2036-459a-9630-18a745805983.png)
+
+          ![{80C41F2E-C455-4606-B04E-67461F091395}](https://user-images.githubusercontent.com/55786368/226906152-1b7283c2-f402-44a8-bca2-df7e59836fe7.png)
+
+          ![{E054E3E4-1589-4F69-82BE-A97F0EA626F9}](https://user-images.githubusercontent.com/55786368/226906181-9f70c124-abe1-4a06-a6d2-340c1895c40e.png)
+
+
+          ![{C9B6624A-87DF-4B54-A3F7-7B51885CB66F}](https://user-images.githubusercontent.com/55786368/226906321-44f36a76-eb10-485d-ad7b-83679161572f.png)
+          ![{767FFB99-0A5F-4184-8B80-4CC8CFDFBFB4}](https://user-images.githubusercontent.com/55786368/226907348-bbe9ded0-a11e-4bc3-9c9d-97970c60d98a.png)
+          ![{31C7EDCE-CBD4-4542-9212-D4404A4A6643}](https://user-images.githubusercontent.com/55786368/226907623-b43e328a-9acc-4655-9157-27eb9acaa6fd.png)
+          ![{68B4B9FB-5C05-49D7-8ABC-AB8BA7C3C95B}](https://user-images.githubusercontent.com/55786368/226907802-2cd3a756-0a12-4454-83c8-823ad4183c4a.png)
+
+
+2.  후위표기법의 수식을 Stack을 이용하여 계산한다.
+    1. 피연산자를 만나면 Stack에 push함
+    2. 연산자를 만나면 필요한 만큼의 피연산자를 Stack에서 pop하여 연산하고 연산결과를 다시 Stack에 push함
+    3. 수식이 끝나면, 마지막으로 Stack을 pop하여 출력
+    4. 후위표기식을 계산할 때는 피연산자를 Stack에 쌓아 계산한다.
+  
 
 <br><br>
 
