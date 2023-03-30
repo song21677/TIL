@@ -4,8 +4,9 @@
   * 어떤 노드를 방문하였을 때 그 노드를 포함한 경로가 해답이 될 수 없으면 그 노드는 유망하지 않다고 한다.
   * 반대로 해답의 가능성이 있으면 유망하다고 한다.
 * 가지치기(Pruning): 유망하지 않은 노드가 포함되는 경로는 더 이상 고려하지 않음
+* 상태 공간 트리(State Space Tree): 초기 상태에서 목적 상태에 이르는 모든 상태들의 전이 가능 관계를 나타낸 트리
 * 알고리즘 절차
-  1. 상태 공간 Tree의 깊이 우선 검색을 실시
+  1. 상태 공간 Tree의 깊이 우선 탐색을 실시
   2. 각 노드가 유망한지를 점검
   3. 만일 그 노드가 유망하지 않으면, 그 노드의 부모 노드로 돌아가서 계속 검색
 * 최적화(Optimization) 문제와 결정 (Decision) 문제를 해결할 수 있다.
@@ -32,6 +33,53 @@
         }
         ```
         ![{DEE4FC9A-C466-4477-B979-4F965DEF999F}](https://user-images.githubusercontent.com/55786368/226832021-297f4231-e413-48eb-ad2f-9390d3d78e7c.png)
+        ```c
+        #include <stdio.h>
+        #define ABS(x) (x > 0 ? x : -(x))
+        // ROW의 인덱스는 행, 값은 열
+        int N, ROW[100] = {0};
+
+        // 해를 (행, 열)로 표현
+        void printResult() {
+            static int cnt = 1;
+            printf("%3d Resullt: ", cnt++);
+            for (int i=1; i<=N; ++i)
+                printf("(%d, %d) ", i, Row[i]);
+            printf("\n");
+        }
+
+        // 가지치기
+        bool promising(int q) {
+            // 지금까지 놓은 퀸들과
+            for (int i=1; i<q; ++i) {
+                // 일직선에 있는지, 대각선에 있는지 검사
+                if (Row[q] == Row[i] || ABS(Row[q] - Row[i]) == ABS(q-i))
+                    return false;
+            }
+            return true;
+        }
+
+        void queens(int q) {
+            // 가지치기
+            if (!promising(q)) return;
+
+            if (q == N) {
+                printResult();
+                return;
+            }
+
+            // 완전탐색 (4^4)
+            for (int i=1; i<=N; ++i) {
+                Row[q+1] = i;
+                queens(q+1);
+            }
+        }
+        int main() {
+            scanf("%d", &N);
+            queens(0);
+            return 0;
+        }
+        ```
     3. Power Set
        * 어떤 집합의 공집합과 자기자신을 포함한 모든 부분집합
        * 구하고자 하는 어떤 집합의 원소 개수가 n일 경우 부분집합의 개수는 2^n이 나옴

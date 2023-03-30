@@ -100,6 +100,44 @@ class Main {
 ```
 <br><br>
 
+## 병합 정렬
+* 여러 개의 정렬된 자료의 집합을 병합하여 한 개의 정렬된 집합으로 만드는 방식
+* 분할: 전체 자료 집합에 대하여, 최소 크기의 부분집합이 될 때까지 분할 작업을 계속함
+  ![{8F78D262-2CAA-484C-B37A-1CC461256365}](https://user-images.githubusercontent.com/55786368/228704458-d84f904e-07df-4d37-a417-c23776fa2819.png)
+* 병합: 2개의 부분집합을 정렬하면서 하나의 집합으로 병합
+* 8개의 부분집합이 1개로 병합될 때까지 반복함
+![{2F561CDE-4B79-4C92-B01B-8F660270EF1F}](https://user-images.githubusercontent.com/55786368/228704463-2b3f458d-4e7f-4e11-b488-13a7b6f2fcba.png)
+
+* 시간 복잡도: O(nlogn)
+    
+    ```c
+    void mergeSort(int arr[], int size) {
+        if (size == 1) return;
+
+        int mid = size / 2;
+        mergeSort(arr, mid);
+        mergeSort(arr + mid, size - mid);
+        int* buf = new int[size]; // 병합한 결과를 저장하는 곳
+        int i=0, j=mid, k=0;
+        while (i<mid && j<size) 
+        // 왼쪽과 오른쪽 모두 원소가 남아있을 경우
+        // 오름차순의 경우, 작은 원소들끼리 비교하며 buf에 채워준다.
+            buf[k++] = arr[i] < arr[j]? arr[i++] : arr[j++];
+        // 왼쪽이 남아있을 경우
+        while (i<mid)
+            buf[k++] = arr[i++];
+        // 오른쪽이 남아있을 경우
+        while (j<size)
+            buf[k++] = arr[j++];
+            
+        // 정렬된 값으로 덮어써주기
+        for (i=0; i<size; ++i)
+            arr[i] = buf[i];
+        delete buf
+    }
+    ```
+<br><br>
+
 ## 퀵 정렬
 - 퀵 정렬은 다음의 두 가지 기본 작업을 반복 수행하여 완성한다.
   - 분할(divide) : 정렬할 자료들을 기준값(pivot)을 중심으로 2개의 부분집합으로 분할한다.
@@ -172,3 +210,14 @@ class Main {
     }
 }
 ```
+<br><br>
+
+### 퀵 정렬 vs 합병 정렬
+* 공통점: 주어진 배열을 두 개로 분할하고, 각각을 정렬
+* 차이점
+  * 합병 정렬
+    * 분할할 때, 단순하게 두 부분으로 나눔
+    * 각 부분 정렬이 끝난 후, '합병'이란 후처리 작업이 필요함
+  * 퀵 정렬
+    * 분할할 때, 기준 아이템(Pivot Item)을 중심으로, 이보다 작은 것은 왼편, 큰 것은 오른편에 위치시킴
+    * 각 부분 정렬이 끝난 후, 후처리 작업이 필요로 하지 않음
