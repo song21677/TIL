@@ -1,16 +1,32 @@
 ```java
 class Main {
-    static int [] arr = new int [3];
+    static int n = 3;
+    static int r = 2;
+    static int [] arr;  // 방문 표시
+    static int [] result = new int [n];   // 순열 result
     static int [] num = {1, 2, 3};
     
     public static void main(String args[]) {
+        System.out.println("powerset (재귀): ");
+        arr = new int [n];
         recursion(0);
-        System.out.println();
-        System.out.println();
-        bit();
-
         
-        // 반복문
+        System.out.println("powerset (비트): ");
+        bit();
+        
+        System.out.println("combination (재귀): ");
+        arr = new int [n];
+        combination(0, 0);
+        
+        System.out.println("combination (백트래킹): ");
+        arr = new int [n];
+        combination_b(0, 0);
+        
+        System.out.println("permutation: ");
+        permutation(0);
+        
+        System.out.println("powerset (반복문): ");
+        // powerset(반복문)
         for (int i=0; i<=1; i++) {
             arr[0] = i;
             for (int j=0; j<=1; j++) {
@@ -26,21 +42,21 @@ class Main {
         }
     }
 
-    // 비트
+    // powerset (비트)
     public static void bit() {
-        for (int i=0; i< 1 << 3; i++) {
-            for (int j=0; j<3; j++) {
-                if ((i & 1 << j) != 0) System.out.print(num[j]);
+        for (int i=0; i< (1 << n); i++) {
+            for (int j=0; j<n; j++) {
+                if ((i & (1 << j)) != 0) System.out.print(num[j] + " ");
             }
             System.out.println();
         }
     }
     
-    // 재귀
+    // powerset (재귀)
     public static void recursion(int idx) {
-        if (idx == 3) {
+        if (idx == n) {
             for (int i=0; i<idx; i++) {
-                if (arr[i] == 1) System.out.print(num[i]);
+                if (arr[i] == 1) System.out.print(num[i] + " ");
             }
             System.out.println();
             return;
@@ -52,81 +68,72 @@ class Main {
         }
         */
 
-        arr[idx] = false;
+        arr[idx] = 0;
         recursion(idx+1);
 
-        arr[idx] = true;
+        arr[idx] = 1;
         recursion(idx+1);
     }
 
-    // 조합
-    public static void combination() {
-        
-    }
-}
-```
-
-```java
-/*
-조합: n개 중에서 r개 선택
-*/
-public class Combination {
-    public static void main(String[] args) {
-        int n = 4;
-        int[] arr = {1, 2, 3, 4};
-        boolean[] visited = new boolean[n];
-
-        for (int i=1; i<=n; i++) {
-            System.out.println("\n" + n + " 개 중에서 " + i + " 개 뽑기");
-            comb(arr, visited, 0, n, i);
-        }
-
-        for (int i=1; i<=n; i++) {
-            System.out.println("\n" + n + " 개 중에서 " + i + " 개 뽑기");
-            combination(arr, visited, 0, n, i);
-        }
-    }
-
-    // 백트래킹
-    static void combination(int[] arr, boolean[] visited, int start, int n, int r) {
-        if (r == 0) {
-            print(arr, visited, n);
-            return;
-        }
-
-        for (int i=start; i<n; i++) {
-            visited[i] = true;
-            combination(arr, visited, i+1, n, r-1);
-            visited[i] = false;
-        }
-    }
-
-    // 재귀
-    static void comb(int[] arr, boolean[] visited, int start, int n, int r) {
-        if (r == 0) {
-            print(arr, visited, n);
-            return;
-        }
-
-        if (depth == n) {
-            return;
-        }
-
-        visited[depth] = true;
-        comb(arr, visited, depth+1, n, r-1);
-
-        visited[depth] = false;
-        comb(arr, visited, depth+1, n, r);
-    }
-
-    // 배열 출력
-    static void print(int[] arr, boolean[] visited, int n) {
-        for (int i = 0; i < n; i++) {
-            if (visited[i]) {
-                System.out.print(arr[i] + " ");
+    // 조합 (재귀)
+    public static void combination(int idx, int cnt) {
+        if (cnt == r) {
+            for (int i=0; i<n; i++) {
+                if (arr[i] == 1) System.out.print(num[i] + " ");
             }
+            System.out.println();
+            return;
         }
-        System.out.println();
+
+        if (idx == n) return;
+
+        /*
+        for (int i=1; i>=0; i--) {
+            arr[idx] = i;
+            if (i == 1) combination(idx+1, cnt+1);
+            else combination(idx+1, cnt);
+        }
+        */
+        arr[idx] = 1;
+        combination(idx+1, cnt+1);
+
+        arr[idx] = 0;
+        combination(idx+1, cnt);
+    }
+
+    // 조합 (백트래킹)
+    public static void combination_b(int idx, int cnt) {
+        if (cnt == r) {
+            for (int i=0; i<n; i++) {
+                if (arr[i] == 1) System.out.print(num[i] + " ");
+            }
+            System.out.println();
+            return;
+        }
+
+        for (idx=idx; idx<n; idx++) {
+            arr[idx] = 1;
+            combination_b(idx+1, cnt+1);
+            arr[idx] = 0;
+        }
+    }
+
+    // 순열
+    public static void permutation(int cnt) {
+        if (cnt == n) {
+            for (int i=0; i<n; i++)
+                System.out.print(result[i]);
+            System.out.println();
+            return;
+        }
+        
+        for (int i=0; i<n; i++) {
+            if (arr[i] == 1) continue;
+            arr[i] = 1;
+            result[cnt] = num[i];
+            permutation(cnt+1);
+            arr[i] = 0;
+        }
     }
 }
 ```
